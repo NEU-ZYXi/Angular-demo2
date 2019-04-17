@@ -521,10 +521,16 @@ __webpack_require__.r(__webpack_exports__);
 
 var MapService = /** @class */ (function () {
     function MapService(http) {
+        var _this = this;
         this.http = http;
+        this.http.get('https://jsonip.com')
+            .subscribe(function (data) {
+            // console.log('th data', data);
+            _this.ip = data;
+        });
     }
     MapService.prototype.getLocation = function () {
-        return this.http.get('https://geo.ipify.org/api/v1?apiKey=at_oVTOjvWzfktZRJDeQsm1wwVWJSOLL&ipAddress=8.8.8.8');
+        return this.http.get('https://geo.ipify.org/api/v1?apiKey=at_oVTOjvWzfktZRJDeQsm1wwVWJSOLL&ipAddress=' + this.ip);
     };
     MapService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1044,7 +1050,7 @@ var CommunityComponent = /** @class */ (function () {
             this.userId = this.sharedService.user._id;
         }
         this.mapService.getLocation().subscribe(function (data) {
-            console.log(data);
+            // console.log(data);
             _this.lat = data.location.lat;
             _this.lng = data.location.lng;
             _this.user.state = data.location.region;

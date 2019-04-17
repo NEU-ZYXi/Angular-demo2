@@ -15,9 +15,17 @@ interface Location {
 })
 export class MapService {
 
-  constructor(private http: HttpClient) { }
+  ip;
+
+  constructor(private http: HttpClient) {
+    this.http.get<{ip:string}>('https://jsonip.com')
+        .subscribe( data => {
+          // console.log('th data', data);
+          this.ip = data
+        });
+  }
 
   getLocation() {
-    return this.http.get<Location>('https://geo.ipify.org/api/v1?apiKey=at_oVTOjvWzfktZRJDeQsm1wwVWJSOLL&ipAddress=8.8.8.8');
+    return this.http.get<Location>('https://geo.ipify.org/api/v1?apiKey=at_oVTOjvWzfktZRJDeQsm1wwVWJSOLL&ipAddress=' + this.ip);
   }
 }
