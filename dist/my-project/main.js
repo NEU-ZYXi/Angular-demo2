@@ -77,7 +77,7 @@ var routes = [
     { path: 'profile', component: _views_user_profile_profile_component__WEBPACK_IMPORTED_MODULE_5__["ProfileComponent"], canActivate: [_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
     { path: 'stream', component: _views_posts_stream_posts_stream_component__WEBPACK_IMPORTED_MODULE_8__["PostsStreamComponent"], canActivate: [_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
     { path: 'guest', component: _views_posts_stream_posts_stream_component__WEBPACK_IMPORTED_MODULE_8__["PostsStreamComponent"], canActivate: [_services_guest_guard_service__WEBPACK_IMPORTED_MODULE_13__["GuestGuard"]] },
-    { path: 'user/posts', component: _views_post_post_list_post_list_component__WEBPACK_IMPORTED_MODULE_11__["PostListComponent"] },
+    { path: 'user/posts', component: _views_post_post_list_post_list_component__WEBPACK_IMPORTED_MODULE_11__["PostListComponent"], canActivate: [_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
     { path: 'stream/new', component: _views_post_post_new_post_new_component__WEBPACK_IMPORTED_MODULE_9__["PostNewComponent"], canActivate: [_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
     { path: 'stream/:pid', component: _views_post_post_item_post_item_component__WEBPACK_IMPORTED_MODULE_10__["PostItemComponent"], canActivate: [_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },
     { path: 'stream/:pid/comment', component: _views_comment_comment_list_comment_list_component__WEBPACK_IMPORTED_MODULE_14__["CommentListComponent"], canActivate: [_services_auth_guard_service__WEBPACK_IMPORTED_MODULE_7__["AuthGuard"]] },

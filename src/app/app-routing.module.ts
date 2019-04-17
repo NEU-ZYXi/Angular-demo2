@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'stream', component: PostsStreamComponent, canActivate: [AuthGuard] },
   { path: 'guest', component: PostsStreamComponent, canActivate: [GuestGuard] },
-  { path: 'user/posts', component: PostListComponent },
+  { path: 'user/posts', component: PostListComponent, canActivate: [AuthGuard] },
   { path: 'stream/new', component: PostNewComponent, canActivate: [AuthGuard] },
   { path: 'stream/:pid', component: PostItemComponent, canActivate: [AuthGuard] },
   { path: 'stream/:pid/comment', component: CommentListComponent, canActivate: [ AuthGuard ] },
