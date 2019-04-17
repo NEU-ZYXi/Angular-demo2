@@ -1,0 +1,70 @@
+<div *ngIf="header.visible">
+  <app-header></app-header>
+</div>
+
+<section class="my-5 p-5">
+  <h2 class="h1-responsive font-weight-bold text-center my-5">Welcome to our amazing 🐂🍺 website</h2>
+  <p class="grey-text text-center w-responsive mx-auto mb-5">You can post whatever you like in this website, read others' posts and even comment on them. Join our community to share your experience!</p>
+  <div style="text-align: center">
+    <a routerLink="/guest" *ngIf="user.type === ''" class="btn blue-gradient btn-lg text-white">Explore</a>
+    <a routerLink="/stream" *ngIf="user.type !== ''" class="btn blue-gradient btn-lg text-white">Explore</a>
+    <a routerLink="/login" *ngIf="user.type === ''" class="btn aqua-gradient btn-lg text-white">Join Us</a>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-4 col-md-12 mb-lg-0 mb-4 pad">
+      <div class="card-wrapper">
+        <div id="card-1" class="card card-rotating text-center">
+          <div class="face front">
+            <div class="card-up">
+              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/19.jpg" alt="Team member card image">
+            </div>
+            <div class="avatar mx-auto white">
+              <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" style="height: 250px; width: 250px" class="rounded-circle img-fluid"
+                   alt="First sample avatar image">
+            </div>
+            <div class="card-body">
+              <h4 class="font-weight-bold mt-1 mb-3">Zhenyuan Xi</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12 mb-lg-0 mb-4 pad">
+      <div class="card-wrapper">
+        <div id="card-2" class="card card-rotating text-center">
+          <div class="face front">
+            <div class="card-up">
+              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/82.jpg" alt="Team member card image">
+            </div>
+            <div class="avatar mx-auto white">
+              <img src="../../../assets/images/Screen%20Shot%202019-04-16%20at%207.52.28%20PM.png" style="width: 250px; height: 250px;" class="rounded-circle" alt="Second sample avatar image">
+            </div>
+            <div class="card-body">
+              <h4 class="font-weight-bold mt-1 mb-3">Yuan Cai</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-12 pad">
+      <div class="card-wrapper">
+        <div id="card-3" class="card card-rotating text-center">
+          <div class="face front">
+            <div class="card-up">
+              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(14).jpg"
+                   alt="Team member card image">
+            </div>
+            <div class="avatar mx-auto white">
+              <img src="../../../assets/images/Screen%20Shot%202019-04-16%20at%207.52.52%20PM.png" style="width: 250px; height: 250px;" class="rounded-circle img-fluid"
+                   alt="Third sample avatar image">
+            </div>
+            <div class="card-body">
+              <h4 class="font-weight-bold mt-1 mb-3">Yiran Zhang</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
