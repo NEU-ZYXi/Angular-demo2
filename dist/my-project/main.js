@@ -524,8 +524,7 @@ var MapService = /** @class */ (function () {
         this.http = http;
     }
     MapService.prototype.getLocation = function () {
-        //d12fb954d7ca1e3102a00de5145debe4
-        return this.http.get('http://api.ipapi.com/api/check?access_key=d12fb954d7ca1e3102a00de5145debe4');
+        return this.http.get('https://geo.ipify.org/api/v1?apiKey=at_oVTOjvWzfktZRJDeQsm1wwVWJSOLL&ipAddress=8.8.8.8');
     };
     MapService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1046,10 +1045,10 @@ var CommunityComponent = /** @class */ (function () {
         }
         this.mapService.getLocation().subscribe(function (data) {
             // console.log(data);
-            _this.lat = data.latitude;
-            _this.lng = data.longitude;
-            _this.user.state = data.region_name;
-            _this.user.country = data.country_name;
+            _this.lat = data.lat;
+            _this.lng = data.lng;
+            _this.user.state = data.region;
+            _this.user.country = data.country;
         });
     };
     CommunityComponent.prototype.onSubmit = function () {
