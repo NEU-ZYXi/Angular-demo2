@@ -1044,7 +1044,7 @@ var CommunityComponent = /** @class */ (function () {
             this.userId = this.sharedService.user._id;
         }
         this.mapService.getLocation().subscribe(function (data) {
-            // console.log(data);
+            console.log(data);
             _this.lat = data.lat;
             _this.lng = data.lng;
             _this.user.state = data.region;

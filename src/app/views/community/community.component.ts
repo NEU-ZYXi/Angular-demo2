@@ -26,7 +26,7 @@ export class CommunityComponent implements OnInit {
       this.userId = this.sharedService.user._id;
     }
     this.mapService.getLocation().subscribe((data) => {
-      // console.log(data);
+      console.log(data);
       this.lat = data.lat;
       this.lng = data.lng;
       this.user.state = data.region;
