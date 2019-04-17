@@ -47,8 +47,8 @@ export class PostsStreamComponent implements OnInit {
   }
 
   onDelete(postId) {
-    this.postService.deletePost(postId).subscribe(() => {
-          this.router.navigate(['./'], {relativeTo: this.route});
+    this.postService.deletePost(postId).subscribe((post) => {
+          this.router.navigate(['/home']);
         }
     );
   }

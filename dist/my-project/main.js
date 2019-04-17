@@ -883,7 +883,7 @@ var CommentListComponent = /** @class */ (function () {
     };
     CommentListComponent.prototype.onDelete = function (commentId) {
         var _this = this;
-        this.commentService.deleteComment(commentId).subscribe(function () {
+        this.commentService.deleteComment(commentId).subscribe(function (comment) {
             _this.router.navigate(['/stream']);
         });
     };
@@ -1807,8 +1807,8 @@ var PostsStreamComponent = /** @class */ (function () {
     };
     PostsStreamComponent.prototype.onDelete = function (postId) {
         var _this = this;
-        this.postService.deletePost(postId).subscribe(function () {
-            _this.router.navigate(['./'], { relativeTo: _this.route });
+        this.postService.deletePost(postId).subscribe(function (post) {
+            _this.router.navigate(['/home']);
         });
     };
     PostsStreamComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([

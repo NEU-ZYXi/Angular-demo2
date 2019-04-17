@@ -50,7 +50,7 @@ export class CommentListComponent implements OnInit {
 
   onDelete(commentId) {
     this.commentService.deleteComment(commentId).subscribe(
-        () => {
+        (comment) => {
           this.router.navigate(['/stream']);
         }
     );
