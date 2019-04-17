@@ -32,15 +32,20 @@ export class CommentListComponent implements OnInit {
     });
   }
 
-  onGetUserPosts(postId) {
-    this.postService.findPostById(postId).subscribe(post => {
-      this.userId = post.userId;
+  onGetUserPosts(username) {
+    this.userService.findUserByUsername(username).subscribe(user => {
+      // console.log(user);
+      if (user.type !== 'User') {
+        this.postService.findPostsByUser(user._id)
+            .subscribe(posts => {
+              this.postService.userPosts = posts;
+              this.router.navigate(['/user/posts']);
+            });
+      } else {
+        alert("This user is not our community member");
+        this.router.navigate(['./'], {relativeTo: this.route});
+      }
     });
-    this.postService.findPostsByUser(this.userId)
-      .subscribe(posts => {
-        this.postService.userPosts = posts;
-        this.router.navigate(['/user/posts']);
-      });
   }
 
   onDelete(commentId) {

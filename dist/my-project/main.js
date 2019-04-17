@@ -811,7 +811,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div *ngIf=\"header.visible\">\n  <app-header></app-header>\n</div>\n\n<section class=\"my-5 p-5\">\n  <a routerLink=\"./new\" class=\"btn btn-primary btn-lg\">New Comment</a>\n  <a routerLink=\"/stream\" class=\"btn btn-danger btn-lg\">Back</a>\n  <hr class=\"my-5\">\n  <div *ngFor=\"let comment of comments\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"mdb-feed\">\n          <div class=\"news\">\n            <div class=\"excerpt\">\n              <div class=\"brief\">\n                <a class=\"font-weight-bold\" (click)=\"onGetUserPosts(comment.postId)\">{{ comment.username }}</a> commented on {{ comment.dateCreated.toString().slice(0,10) }}:\n                <p class=\"dark-grey-text\">{{ comment.content }}</p>\n              </div>\n              <div style=\"display: flex;\" *ngIf=\"userId !== null && user.type === 'Admin'\">\n                <a class=\"btn btn-danger btn-md\" (click)=\"onDelete(comment._id)\">Delete</a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <hr class=\"my-5\" *ngIf=\"comments.length > 0\">\n  </div>\n</section>\n"
+module.exports = "<div *ngIf=\"header.visible\">\n  <app-header></app-header>\n</div>\n\n<section class=\"my-5 p-5\">\n  <a routerLink=\"./new\" class=\"btn btn-primary btn-lg\">New Comment</a>\n  <a routerLink=\"/stream\" class=\"btn btn-danger btn-lg\">Back</a>\n  <hr class=\"my-5\">\n  <div *ngFor=\"let comment of comments\">\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"mdb-feed\">\n          <div class=\"news\">\n            <div class=\"excerpt\">\n              <div class=\"brief\">\n                <a class=\"font-weight-bold\" (click)=\"onGetUserPosts(comment.username)\">{{ comment.username }}</a>\n                commented on {{ comment.dateCreated.toString().slice(0,10) }}:\n                <p class=\"dark-grey-text\">{{ comment.content }}</p>\n              </div>\n              <div style=\"display: flex;\" *ngIf=\"userId !== null && user.type === 'Admin'\">\n                <a class=\"btn btn-danger btn-md\" (click)=\"onDelete(comment._id)\">Delete</a>\n              </div>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <hr class=\"my-5\" *ngIf=\"comments.length > 0\">\n  </div>\n</section>\n"
 
 /***/ }),
 
@@ -864,15 +864,21 @@ var CommentListComponent = /** @class */ (function () {
             // console.log(this.comments);
         });
     };
-    CommentListComponent.prototype.onGetUserPosts = function (postId) {
+    CommentListComponent.prototype.onGetUserPosts = function (username) {
         var _this = this;
-        this.postService.findPostById(postId).subscribe(function (post) {
-            _this.userId = post.userId;
-        });
-        this.postService.findPostsByUser(this.userId)
-            .subscribe(function (posts) {
-            _this.postService.userPosts = posts;
-            _this.router.navigate(['/user/posts']);
+        this.userService.findUserByUsername(username).subscribe(function (user) {
+            // console.log(user);
+            if (user.type !== 'User') {
+                _this.postService.findPostsByUser(user._id)
+                    .subscribe(function (posts) {
+                    _this.postService.userPosts = posts;
+                    _this.router.navigate(['/user/posts']);
+                });
+            }
+            else {
+                alert("This user is not our community member");
+                _this.router.navigate(['./'], { relativeTo: _this.route });
+            }
         });
     };
     CommentListComponent.prototype.onDelete = function (commentId) {
