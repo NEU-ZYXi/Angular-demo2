@@ -1045,10 +1045,10 @@ var CommunityComponent = /** @class */ (function () {
         }
         this.mapService.getLocation().subscribe(function (data) {
             console.log(data);
-            _this.lat = data.lat;
-            _this.lng = data.lng;
-            _this.user.state = data.region;
-            _this.user.country = data.country;
+            _this.lat = data.location.lat;
+            _this.lng = data.location.lng;
+            _this.user.state = data.location.region;
+            _this.user.country = data.location.country;
         });
     };
     CommunityComponent.prototype.onSubmit = function () {

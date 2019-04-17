@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 interface Location {
-  lat: string;
-  lng: string;
-  region: string;
-  country: string;
+  location: {
+    lat: string;
+    lng: string;
+    region: string;
+    country: string;
+  }
 }
 
 @Injectable({

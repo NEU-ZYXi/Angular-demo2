@@ -27,10 +27,10 @@ export class CommunityComponent implements OnInit {
     }
     this.mapService.getLocation().subscribe((data) => {
       console.log(data);
-      this.lat = data.lat;
-      this.lng = data.lng;
-      this.user.state = data.region;
-      this.user.country = data.country;
+      this.lat = data.location.lat;
+      this.lng = data.location.lng;
+      this.user.state = data.location.region;
+      this.user.country = data.location.country;
     })
   }
 
