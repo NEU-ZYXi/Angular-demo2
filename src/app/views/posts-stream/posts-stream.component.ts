@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HeaderService} from '../../services/header.service.client';
 import {PostService} from '../../services/post.service.client';
 import {SharedService} from '../../services/shared.service.client';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-posts-stream',
@@ -15,7 +15,7 @@ export class PostsStreamComponent implements OnInit {
   user = {type: ''};
   posts = [];
 
-  constructor(public header: HeaderService, private postService: PostService, private sharedService: SharedService, private router: Router) { }
+  constructor(public header: HeaderService, private postService: PostService, private sharedService: SharedService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.header.show();
@@ -47,8 +47,10 @@ export class PostsStreamComponent implements OnInit {
   }
 
   onDelete(postId) {
-    this.postService.deletePost(postId).subscribe();
-    this.router.navigate(['/home']);
+    this.postService.deletePost(postId).subscribe(() => {
+          this.router.navigate(['./'], {relativeTo: this.route});
+        }
+    );
   }
 
 }

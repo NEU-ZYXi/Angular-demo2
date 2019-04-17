@@ -882,8 +882,10 @@ var CommentListComponent = /** @class */ (function () {
         });
     };
     CommentListComponent.prototype.onDelete = function (commentId) {
-        this.commentService.deleteComment(commentId).subscribe();
-        this.router.navigate(['/stream']);
+        var _this = this;
+        this.commentService.deleteComment(commentId).subscribe(function () {
+            _this.router.navigate(['/stream']);
+        });
     };
     CommentListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1764,11 +1766,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PostsStreamComponent = /** @class */ (function () {
-    function PostsStreamComponent(header, postService, sharedService, router) {
+    function PostsStreamComponent(header, postService, sharedService, router, route) {
         this.header = header;
         this.postService = postService;
         this.sharedService = sharedService;
         this.router = router;
+        this.route = route;
         this.userId = null;
         this.user = { type: '' };
         this.posts = [];
@@ -1803,8 +1806,10 @@ var PostsStreamComponent = /** @class */ (function () {
         }
     };
     PostsStreamComponent.prototype.onDelete = function (postId) {
-        this.postService.deletePost(postId).subscribe();
-        this.router.navigate(['/home']);
+        var _this = this;
+        this.postService.deletePost(postId).subscribe(function () {
+            _this.router.navigate(['./'], { relativeTo: _this.route });
+        });
     };
     PostsStreamComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1812,7 +1817,7 @@ var PostsStreamComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./posts-stream.component.html */ "./src/app/views/posts-stream/posts-stream.component.html"),
             styles: [__webpack_require__(/*! ./posts-stream.component.css */ "./src/app/views/posts-stream/posts-stream.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_header_service_client__WEBPACK_IMPORTED_MODULE_2__["HeaderService"], _services_post_service_client__WEBPACK_IMPORTED_MODULE_3__["PostService"], _services_shared_service_client__WEBPACK_IMPORTED_MODULE_4__["SharedService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_header_service_client__WEBPACK_IMPORTED_MODULE_2__["HeaderService"], _services_post_service_client__WEBPACK_IMPORTED_MODULE_3__["PostService"], _services_shared_service_client__WEBPACK_IMPORTED_MODULE_4__["SharedService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"]])
     ], PostsStreamComponent);
     return PostsStreamComponent;
 }());

@@ -49,8 +49,11 @@ export class CommentListComponent implements OnInit {
   }
 
   onDelete(commentId) {
-    this.commentService.deleteComment(commentId).subscribe();
-    this.router.navigate(['/stream']);
+    this.commentService.deleteComment(commentId).subscribe(
+        () => {
+          this.router.navigate(['/stream']);
+        }
+    );
   }
 
 }
