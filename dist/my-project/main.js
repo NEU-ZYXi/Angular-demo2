@@ -2070,7 +2070,7 @@ __webpack_require__.r(__webpack_exports__);
 var environment = {
     production: false,
     // baseUrl: 'http://localhost:3200'
-    baseUrl: 'https://webdev-group.herokuapp.com/'
+    baseUrl: 'https://webdev-group.herokuapp.com'
 };
 /*
  * For easier debugging in development mode, you can import the following file
@@ -2117,7 +2117,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/stevenxi/Documents/webdev/my-project copy/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/stevenxi/Documents/webdev-project/src/main.ts */"./src/main.ts");
 
 
 /***/ })

@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // baseUrl: 'http://localhost:3200'
-  baseUrl: 'https://webdev-group.herokuapp.com/'
+  baseUrl: 'https://webdev-group.herokuapp.com'
 };
 
 /*
