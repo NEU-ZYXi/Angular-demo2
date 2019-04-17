@@ -521,16 +521,22 @@ __webpack_require__.r(__webpack_exports__);
 
 var MapService = /** @class */ (function () {
     function MapService(http) {
-        var _this = this;
         this.http = http;
-        this.http.get('https://jsonip.com')
-            .subscribe(function (data) {
-            // console.log('th data', data);
-            _this.ip = data;
-        });
+        this.loc = { location: { lat: '', lng: '', region: '', country: '' } };
     }
+    MapService.prototype.ngOnInit = function () {
+        // this.http.get<{ ip: string }>('https://jsonip.com')
+        //     .subscribe(data => {
+        //       console.log('th data', data);
+        //       this.ip = data.ip;
+        //       this.http.get<Location>('https://geo.ipify.org/api/v1?apiKey=at_oVTOjvWzfktZRJDeQsm1wwVWJSOLL&ipAddress=' + data.ip)
+        //           .subscribe(location => {
+        //             this.loc = location;
+        //           });
+        //     });
+    };
     MapService.prototype.getLocation = function () {
-        return this.http.get('https://geo.ipify.org/api/v1?apiKey=at_oVTOjvWzfktZRJDeQsm1wwVWJSOLL&ipAddress=' + this.ip);
+        // return this.http.get<Location>('https://geo.ipify.org/api/v1?apiKey=at_oVTOjvWzfktZRJDeQsm1wwVWJSOLL&ipAddress=8.8.8.8');
     };
     MapService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
@@ -1024,6 +1030,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_user_service_client__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/user.service.client */ "./src/app/services/user.service.client.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _services_map_service_client__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../services/map.service.client */ "./src/app/services/map.service.client.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
 
 
 
@@ -1032,12 +1040,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CommunityComponent = /** @class */ (function () {
-    function CommunityComponent(header, sharedService, userService, router, mapService) {
+    function CommunityComponent(header, sharedService, userService, router, mapService, http) {
         this.header = header;
         this.sharedService = sharedService;
         this.userService = userService;
         this.router = router;
         this.mapService = mapService;
+        this.http = http;
         this.user = { firstName: '', lastName: '', address: '', state: '', country: '', type: 'user' };
         this.lat = '';
         this.lng = '';
@@ -1049,13 +1058,36 @@ var CommunityComponent = /** @class */ (function () {
             this.user = this.sharedService.user;
             this.userId = this.sharedService.user._id;
         }
-        this.mapService.getLocation().subscribe(function (data) {
-            // console.log(data);
-            _this.lat = data.location.lat;
-            _this.lng = data.location.lng;
-            _this.user.state = data.location.region;
-            _this.user.country = data.location.country;
+        // this.data = this.mapService.loc;
+        // this.lat = this.data.location.lat;
+        // this.lng = this.data.location.lng;
+        // this.user.state = this.data.location.region;
+        // this.user.country = this.data.location.country;
+        // this.mapService.getLocation().subscribe((data) => {
+        //   // console.log(data);
+        //   this.lat = data.location.lat;
+        //   this.lng = data.location.lng;
+        //   this.user.state = data.location.region;
+        //   this.user.country = data.location.country;
+        // })
+        this.http.get('https://jsonip.com')
+            .subscribe(function (data) {
+            // console.log('th data', data);
+            _this.http.get('https://geo.ipify.org/api/v1?apiKey=at_oVTOjvWzfktZRJDeQsm1wwVWJSOLL&ipAddress=' + data.ip)
+                .subscribe(function (data) {
+                _this.lat = data.location.lat;
+                _this.lng = data.location.lng;
+                _this.user.state = data.location.region;
+                _this.user.country = data.location.country;
+            });
         });
+        // this.http.get<Location>('https://geo.ipify.org/api/v1?apiKey=at_oVTOjvWzfktZRJDeQsm1wwVWJSOLL&ipAddress=8.8.8.8')
+        //     .subscribe(data => {
+        //       this.lat = data.location.lat;
+        //       this.lng = data.location.lng;
+        //       this.user.state = data.location.region;
+        //       this.user.country = data.location.country;
+        //     });
     };
     CommunityComponent.prototype.onSubmit = function () {
         var _this = this;
@@ -1073,7 +1105,7 @@ var CommunityComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./community.component.html */ "./src/app/views/community/community.component.html"),
             styles: [__webpack_require__(/*! ./community.component.css */ "./src/app/views/community/community.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_header_service_client__WEBPACK_IMPORTED_MODULE_2__["HeaderService"], _services_shared_service_client__WEBPACK_IMPORTED_MODULE_3__["SharedService"], _services_user_service_client__WEBPACK_IMPORTED_MODULE_4__["UserService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _services_map_service_client__WEBPACK_IMPORTED_MODULE_6__["MapService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_header_service_client__WEBPACK_IMPORTED_MODULE_2__["HeaderService"], _services_shared_service_client__WEBPACK_IMPORTED_MODULE_3__["SharedService"], _services_user_service_client__WEBPACK_IMPORTED_MODULE_4__["UserService"], _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"], _services_map_service_client__WEBPACK_IMPORTED_MODULE_6__["MapService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_7__["HttpClient"]])
     ], CommunityComponent);
     return CommunityComponent;
 }());
