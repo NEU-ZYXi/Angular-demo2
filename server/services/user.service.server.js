@@ -26,7 +26,7 @@ module.exports = app => {
     // clientSecret: '5323d4f2a73d21a374d1b1e3e69aafbe',
     // clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     // callbackURL: "https://webdev-cs5610-zhenyuan.herokuapp.com/auth/facebook/callback"
-    callbackURL: "/auth/facebook/callback"
+    callbackURL: "https://webdev-group.herokuapp.com/auth/facebook/callback"
   };
   passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
   function facebookStrategy(token, refreshToken, profile, done) {
