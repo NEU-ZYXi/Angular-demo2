@@ -19,9 +19,9 @@ module.exports = app => {
   app.get("/api/users", findAllUsers);
 
   var facebookConfig = {
-    clientID: '644451369317015',
+    clientID: '640512233060690',
     // clientID: process.env.FACEBOOK_CLIENT_ID,
-    clientSecret: '9b84bcfec3b28d0f4172f6e326874072',
+    clientSecret: 'cecbf29b509940388f3a8afe266df468',
     // clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     // callbackURL: "https://webdev-cs5610-zhenyuan.herokuapp.com/auth/facebook/callback"
     callbackURL: "/auth/facebook/callback"
