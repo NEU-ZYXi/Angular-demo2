@@ -19,11 +19,11 @@ module.exports = app => {
   app.get("/api/users", findAllUsers);
 
   var facebookConfig = {
-    // clientID: '640512233060690',
-    clientID: '790944381277138',
+    clientID: '640512233060690',
+    // clientID: '790944381277138',
     // clientID: process.env.FACEBOOK_CLIENT_ID,
-    // clientSecret: 'cecbf29b509940388f3a8afe266df468',
-    clientSecret: '5323d4f2a73d21a374d1b1e3e69aafbe',
+    clientSecret: 'cecbf29b509940388f3a8afe266df468',
+    // clientSecret: '5323d4f2a73d21a374d1b1e3e69aafbe',
     // clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
     // callbackURL: "https://webdev-cs5610-zhenyuan.herokuapp.com/auth/facebook/callback"
     callbackURL: "/auth/facebook/callback"
@@ -54,19 +54,26 @@ module.exports = app => {
       });
   }
 
-  app.get('/auth/facebook', function authenticateFacebook (req, res, next) {
-      req.session.returnTo = '/#' + req.query.returnTo;
-      next();
-    },
-    passport.authenticate('facebook', {scope: 'email'}));
-  app.get("/auth/facebook/callback", function (req, res, next) {
-    var authenticator = passport.authenticate('facebook', {
-      successRedirect: req.session.returnTo,
-      failureRedirect: '/'
-    });
-    delete req.session.returnTo;
-    authenticator(req, res, next);
-  });
+  // app.get('/auth/facebook', function authenticateFacebook (req, res, next) {
+  //     req.session.returnTo = '/#' + req.query.returnTo;
+  //     next();
+  //   },
+  //   passport.authenticate('facebook', {scope: 'email'}));
+  // app.get("/auth/facebook/callback", function (req, res, next) {
+  //   var authenticator = passport.authenticate('facebook', {
+  //     successRedirect: req.session.returnTo,
+  //     failureRedirect: '/'
+  //   });
+  //   delete req.session.returnTo;
+  //   authenticator(req, res, next);
+  // });
+
+  app.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+
+  app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+    successRedirect: '/#/stream',
+    failureRedirect: '/#/login'
+  }));
 
   passport.serializeUser((user, done) => {
     done(null, user);
